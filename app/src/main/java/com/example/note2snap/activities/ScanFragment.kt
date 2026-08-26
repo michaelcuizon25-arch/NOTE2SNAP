@@ -1,0 +1,330 @@
+package com.example.note2snap.activities
+
+import android.Manifest
+import android.content.ContentValues
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.camera.core.Camera
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.view.PreviewView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.example.note2snap.R
+import com.example.note2snap.data.AppDatabase
+import com.example.note2snap.model.Note
+import com.example.note2snap.model.ScanHistory
+import com.example.note2snap.utils.WhiteboardRuleEngine
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+class ScanFragment : Fragment() {
+
+    private lateinit var viewFinder: PreviewView
+    private lateinit var tvInstruction: TextView
+    private var imageCapture: ImageCapture? = null
+    private var camera: Camera? = null
+    private var isTorchOn = false
+    private var loadingDialog: AlertDialog? = null
+    private var scanStartTime: Long = 0L
+
+    private val selectImageFromGallery = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let { selectedUri ->
+            scanStartTime = System.currentTimeMillis()
+            showLoadingDialog("Processing photo...")
+            val savedPath = saveImageToInternalStorage(selectedUri)
+            if (savedPath != null) {
+                val localFileUri = Uri.fromFile(File(savedPath))
+                processImageWithOcr(localFileUri, savedPath, "Gallery Note")
+            } else {
+                hideLoadingDialog()
+                Toast.makeText(requireContext(), "Failed to save selected image.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private val requestCameraPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            startCamera()
+        } else {
+            Toast.makeText(requireContext(), "Camera permission denied.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_scan, container, false)
+
+        viewFinder = view.findViewById(R.id.viewFinder)
+        tvInstruction = view.findViewById(R.id.tvInstruction)
+        val btnCapture = view.findViewById<Button>(R.id.btnCapture)
+        val btnGallery = view.findViewById<View>(R.id.btnGallery)
+        val btnFlash = view.findViewById<ImageButton>(R.id.btnFlash)
+
+        checkAndStartCamera()
+
+        btnCapture.setOnClickListener {
+            takePhoto()
+        }
+
+        btnGallery.setOnClickListener {
+            selectImageFromGallery.launch("image/*")
+        }
+
+        btnFlash.setOnClickListener {
+            if (camera?.cameraInfo?.hasFlashUnit() == true) {
+                isTorchOn = !isTorchOn
+                camera?.cameraControl?.enableTorch(isTorchOn)
+
+                val statusText = if (isTorchOn) "Flashlight ON" else "Flashlight OFF"
+                Toast.makeText(requireContext(), statusText, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Flash unavailable on this device", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return view
+    }
+
+    fun updateInstruction(message: String) {
+        tvInstruction.text = message
+    }
+
+    private fun checkAndStartCamera() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            startCamera()
+        } else {
+            requestCameraPermission.launch(Manifest.permission.CAMERA)
+        }
+    }
+
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+
+        cameraProviderFuture.addListener({
+            val cameraProvider = cameraProviderFuture.get()
+
+            val preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(viewFinder.surfaceProvider)
+            }
+
+            imageCapture = ImageCapture.Builder().build()
+
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            try {
+                cameraProvider.unbindAll()
+                camera = cameraProvider.bindToLifecycle(
+                    viewLifecycleOwner,
+                    cameraSelector,
+                    preview,
+                    imageCapture
+                )
+            } catch (exc: Exception) {
+                Toast.makeText(requireContext(), "Failed to start camera.", Toast.LENGTH_SHORT).show()
+            }
+        }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+        scanStartTime = System.currentTimeMillis()
+        showLoadingDialog("Scanning process...")
+
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(System.currentTimeMillis())
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, "NOTE2SNAP_$timeStamp.jpg")
+            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/NOTE2SNAP")
+            }
+        }
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(
+            requireContext().contentResolver,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        ).build()
+
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(requireContext()),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exc: ImageCaptureException) {
+                    hideLoadingDialog()
+                    Toast.makeText(requireContext(), "Photo capture failed.", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    val savedUri = output.savedUri
+                    if (savedUri != null) {
+                        processImageWithOcr(savedUri, savedUri.toString(), "Scanned Note")
+                    } else {
+                        hideLoadingDialog()
+                    }
+                }
+            }
+        )
+    }
+
+    private fun processImageWithOcr(imageUri: Uri, imagePath: String, fallbackTitle: String) {
+        try {
+            val inputImage = InputImage.fromFilePath(requireContext(), imageUri)
+            val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+
+            recognizer.process(inputImage)
+                .addOnSuccessListener { visionText ->
+                    val rawLines = visionText.text.lines()
+
+                    val structuredNote = WhiteboardRuleEngine.process(rawLines)
+                    val formattedContent = structuredNote.blocks.joinToString("\n") { it.formattedText }
+
+                    val finalTitle = if (structuredNote.title.isNotBlank() && structuredNote.title != "Untitled Scan") {
+                        structuredNote.title
+                    } else {
+                        fallbackTitle
+                    }
+
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        saveNoteToDatabase(finalTitle, formattedContent, imagePath)
+                        saveScanHistory(finalTitle, imagePath)
+
+                        // Enforce minimum 5-second loading display time
+                        val elapsedTime = System.currentTimeMillis() - scanStartTime
+                        val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
+                        delay(remainingDelay)
+
+                        withContext(Dispatchers.Main) {
+                            hideLoadingDialog()
+
+                            val intent = Intent(requireContext(), PdfViewerActivity::class.java).apply {
+                                putExtra("TITLE", finalTitle)
+                                putExtra("CONTENT", formattedContent)
+                                putExtra("IMAGE_PATH", imagePath)
+                            }
+                            startActivity(intent)
+                        }
+                    }
+                }
+                .addOnFailureListener {
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        saveNoteToDatabase(fallbackTitle, "", imagePath)
+                        saveScanHistory(fallbackTitle, imagePath)
+
+                        val elapsedTime = System.currentTimeMillis() - scanStartTime
+                        val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
+                        delay(remainingDelay)
+
+                        withContext(Dispatchers.Main) {
+                            hideLoadingDialog()
+                            Toast.makeText(requireContext(), "OCR processing failed.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            hideLoadingDialog()
+        }
+    }
+
+    private fun showLoadingDialog(message: String) {
+        if (loadingDialog == null) {
+            val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_loading, null)
+            dialogView.findViewById<TextView>(R.id.tvLoadingMessage).text = message
+
+            loadingDialog = AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .setCancelable(false)
+                .create().apply {
+                    window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                }
+        } else {
+            loadingDialog?.findViewById<TextView>(R.id.tvLoadingMessage)?.text = message
+        }
+        loadingDialog?.show()
+    }
+
+    private fun hideLoadingDialog() {
+        loadingDialog?.dismiss()
+        loadingDialog = null
+    }
+
+    private fun saveImageToInternalStorage(uri: Uri): String? {
+        return try {
+            val inputStream = requireContext().contentResolver.openInputStream(uri)
+            val fileName = "gallery_${System.currentTimeMillis()}.jpg"
+            val file = File(requireContext().filesDir, fileName)
+            val outputStream = FileOutputStream(file)
+
+            inputStream?.use { input ->
+                outputStream.use { output ->
+                    input.copyTo(output)
+                }
+            }
+            file.absolutePath
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private suspend fun saveNoteToDatabase(title: String, content: String, imagePath: String) {
+        val currentDate = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(Date())
+        val newNote = Note(
+            title = title,
+            content = content,
+            imagePath = imagePath,
+            dateEdited = currentDate
+        )
+        AppDatabase.getDatabase(requireContext()).appDao().insertNote(newNote)
+    }
+
+    private suspend fun saveScanHistory(title: String, imagePath: String) {
+        val currentDate = SimpleDateFormat("MMM dd, yyyy • hh:mm a", Locale.getDefault()).format(Date())
+        val historyItem = ScanHistory(
+            title = title,
+            date = currentDate,
+            imagePath = imagePath
+        )
+        AppDatabase.getDatabase(requireContext()).appDao().insertScanHistory(historyItem)
+    }
+}
