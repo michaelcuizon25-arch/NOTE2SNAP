@@ -4,7 +4,13 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
@@ -147,7 +153,9 @@ class ScanFragment : Fragment() {
                 it.setSurfaceProvider(viewFinder.surfaceProvider)
             }
 
-            imageCapture = ImageCapture.Builder().build()
+            imageCapture = ImageCapture.Builder()
+                .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
+                .build()
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -206,63 +214,111 @@ class ScanFragment : Fragment() {
         )
     }
 
+    private fun preprocessBitmap(bitmap: Bitmap): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+        val bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bmpGrayscale)
+        val paint = Paint()
+
+        val grayscaleMatrix = ColorMatrix().apply {
+            setSaturation(0f) // Fixed: Changed setSat to setSaturation
+        }
+
+        val contrast = 1.3f
+        val translate = (-0.5f * contrast + 0.5f) * 255f
+        val contrastMatrix = ColorMatrix(
+            floatArrayOf(
+                contrast, 0f, 0f, 0f, translate,
+                0f, contrast, 0f, 0f, translate,
+                0f, 0f, contrast, 0f, translate,
+                0f, 0f, 0f, 1f, 0f
+            )
+        )
+
+        grayscaleMatrix.postConcat(contrastMatrix)
+        paint.colorFilter = ColorMatrixColorFilter(grayscaleMatrix)
+        canvas.drawBitmap(bitmap, 0f, 0f, paint)
+
+        return bmpGrayscale
+    }
+
     private fun processImageWithOcr(imageUri: Uri, imagePath: String, fallbackTitle: String) {
-        try {
-            val inputImage = InputImage.fromFilePath(requireContext(), imageUri)
-            val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val inputStream = requireContext().contentResolver.openInputStream(imageUri)
+                val originalBitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
 
-            recognizer.process(inputImage)
-                .addOnSuccessListener { visionText ->
-                    val rawLines = visionText.text.lines()
-
-                    val structuredNote = WhiteboardRuleEngine.process(rawLines)
-                    val formattedContent = structuredNote.blocks.joinToString("\n") { it.formattedText }
-
-                    val finalTitle = if (structuredNote.title.isNotBlank() && structuredNote.title != "Untitled Scan") {
-                        structuredNote.title
-                    } else {
-                        fallbackTitle
+                if (originalBitmap == null) {
+                    withContext(Dispatchers.Main) {
+                        hideLoadingDialog()
+                        Toast.makeText(requireContext(), "Failed to decode image.", Toast.LENGTH_SHORT).show()
                     }
+                    return@launch
+                }
 
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        saveNoteToDatabase(finalTitle, formattedContent, imagePath)
-                        saveScanHistory(finalTitle, imagePath)
+                val processedBitmap = preprocessBitmap(originalBitmap)
+                val inputImage = InputImage.fromBitmap(processedBitmap, 0)
+                val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
-                        // Enforce minimum 5-second loading display time
-                        val elapsedTime = System.currentTimeMillis() - scanStartTime
-                        val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
-                        delay(remainingDelay)
+                withContext(Dispatchers.Main) {
+                    recognizer.process(inputImage)
+                        .addOnSuccessListener { visionText ->
+                            val rawLines = visionText.text.lines()
 
-                        withContext(Dispatchers.Main) {
-                            hideLoadingDialog()
-
-                            val intent = Intent(requireContext(), PdfViewerActivity::class.java).apply {
-                                putExtra("TITLE", finalTitle)
-                                putExtra("CONTENT", formattedContent)
-                                putExtra("IMAGE_PATH", imagePath)
+                            val structuredNote = WhiteboardRuleEngine.process(rawLines)
+                            val formattedContent = structuredNote.blocks.joinToString("\n") { it.formattedText }
+                            val extractedTitle = if (structuredNote.title.isNotBlank() && structuredNote.title != "Untitled Scan") {
+                                structuredNote.title
+                            } else {
+                                fallbackTitle
                             }
-                            startActivity(intent)
-                        }
-                    }
-                }
-                .addOnFailureListener {
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        saveNoteToDatabase(fallbackTitle, "", imagePath)
-                        saveScanHistory(fallbackTitle, imagePath)
 
-                        val elapsedTime = System.currentTimeMillis() - scanStartTime
-                        val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
-                        delay(remainingDelay)
+                            val finalTitle = if (extractedTitle.isNotBlank()) extractedTitle else fallbackTitle
 
-                        withContext(Dispatchers.Main) {
-                            hideLoadingDialog()
-                            Toast.makeText(requireContext(), "OCR processing failed.", Toast.LENGTH_SHORT).show()
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                saveNoteToDatabase(finalTitle, formattedContent, imagePath)
+                                saveScanHistory(finalTitle, imagePath)
+
+                                val elapsedTime = System.currentTimeMillis() - scanStartTime
+                                val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
+                                delay(remainingDelay)
+
+                                withContext(Dispatchers.Main) {
+                                    hideLoadingDialog()
+
+                                    val intent = Intent(requireContext(), PdfViewerActivity::class.java).apply {
+                                        putExtra("TITLE", finalTitle)
+                                        putExtra("CONTENT", formattedContent)
+                                        putExtra("IMAGE_PATH", imagePath)
+                                    }
+                                    startActivity(intent)
+                                }
+                            }
                         }
-                    }
+                        .addOnFailureListener {
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                saveNoteToDatabase(fallbackTitle, "", imagePath)
+                                saveScanHistory(fallbackTitle, imagePath)
+
+                                val elapsedTime = System.currentTimeMillis() - scanStartTime
+                                val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
+                                delay(remainingDelay)
+
+                                withContext(Dispatchers.Main) {
+                                    hideLoadingDialog()
+                                    Toast.makeText(requireContext(), "OCR processing failed.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
                 }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            hideLoadingDialog()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    hideLoadingDialog()
+                }
+            }
         }
     }
 

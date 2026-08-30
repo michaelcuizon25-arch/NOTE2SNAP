@@ -60,4 +60,8 @@ interface AppDao {
 
     @Update
     suspend fun updateScanHistory(history: ScanHistory)
+
+    @Update
+    suspend fun updateNote(note: Note)
+
 }
