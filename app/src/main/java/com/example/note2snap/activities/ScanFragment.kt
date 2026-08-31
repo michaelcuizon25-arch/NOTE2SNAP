@@ -222,7 +222,7 @@ class ScanFragment : Fragment() {
         val paint = Paint()
 
         val grayscaleMatrix = ColorMatrix().apply {
-            setSaturation(0f) // Fixed: Changed setSat to setSaturation
+            setSaturation(0f)
         }
 
         val contrast = 1.3f
@@ -265,10 +265,10 @@ class ScanFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     recognizer.process(inputImage)
                         .addOnSuccessListener { visionText ->
-                            val rawLines = visionText.text.lines()
+                            // Pass ML Kit Text object directly to preserve bounding box spatial coordinates
+                            val structuredNote = WhiteboardRuleEngine.process(visionText)
+                            val formattedContent = structuredNote.blocks.joinToString("<br/>") { it.formattedText }
 
-                            val structuredNote = WhiteboardRuleEngine.process(rawLines)
-                            val formattedContent = structuredNote.blocks.joinToString("\n") { it.formattedText }
                             val extractedTitle = if (structuredNote.title.isNotBlank() && structuredNote.title != "Untitled Scan") {
                                 structuredNote.title
                             } else {
