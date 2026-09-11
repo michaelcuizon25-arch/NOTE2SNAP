@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.note2snap.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.note2snap.utils.LiquidBottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var bottomNav: LiquidBottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Read saved preference and set Night Mode BEFORE layout inflation
@@ -30,20 +32,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNav = findViewById(R.id.bottomNavigation)
+
         if (savedInstanceState == null) {
             loadFragment(HomeFragment())
+            // Position initial liquid curve under Home (Index 0)
+            bottomNav.post {
+                bottomNav.animateToTab(0, totalTabs = 5)
+            }
         }
 
         bottomNav.setOnItemSelectedListener { item ->
-            val fragment: Fragment = when (item.itemId) {
-                R.id.nav_home -> HomeFragment()
-                R.id.nav_notes -> NotesFragment()
-                R.id.nav_scan -> ScanFragment()
-                R.id.nav_history -> HistoryFragment()
-                R.id.nav_settings -> SettingsFragment()
-                else -> HomeFragment()
+            val (fragment, tabIndex) = when (item.itemId) {
+                R.id.nav_home -> Pair(HomeFragment(), 0)
+                R.id.nav_notes -> Pair(NotesFragment(), 1)
+                R.id.nav_scan -> Pair(ScanFragment(), 2)
+                R.id.nav_history -> Pair(HistoryFragment(), 3)
+                R.id.nav_settings -> Pair(SettingsFragment(), 4)
+                else -> Pair(HomeFragment(), 0)
             }
+
+            // Animate liquid wave to target tab position
+            bottomNav.animateToTab(tabIndex, totalTabs = 5)
             loadFragment(fragment)
             true
         }
@@ -51,13 +61,16 @@ class MainActivity : AppCompatActivity() {
 
     fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }
 
-    // Call this to change the active tab icon on the bottom nav bar
+    // Call this from child fragments to update the active tab and trigger liquid wave
     fun selectTab(itemId: Int) {
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNav.selectedItemId = itemId
     }
 }

@@ -237,12 +237,15 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvNotes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:nestedScrollingEnabled="false" />
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/layout_animation_cascade"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />/>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -258,5 +261,6 @@
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#2563EB"
         app:tint="#FFFFFF" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

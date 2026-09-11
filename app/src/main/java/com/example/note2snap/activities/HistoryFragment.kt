@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -23,14 +24,24 @@ import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
 
+    private var rvHistory: RecyclerView? = null
+    private var llEmptyHistory: LinearLayout? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_history, container, false)
+        return inflater.inflate(R.layout.fragment_history, container, false)
+    }
 
-        val rvHistory = view.findViewById<RecyclerView>(R.id.rvHistory)
-        val llEmptyHistory = view.findViewById<LinearLayout>(R.id.llEmptyHistory)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Slide up the entire fragment screen on entry
+        animateScreenSlideUp(view)
+
+        rvHistory = view.findViewById(R.id.rvHistory)
+        llEmptyHistory = view.findViewById(R.id.llEmptyHistory)
 
         rvHistory?.layoutManager = LinearLayoutManager(requireContext())
 
@@ -57,10 +68,22 @@ class HistoryFragment : Fragment() {
                             showOptionsDialog(item)
                         }
                     )
+
+                    // Trigger cascade animation on history list items
+                    rvHistory?.scheduleLayoutAnimation()
                 }
             })
+    }
 
-        return view
+    private fun animateScreenSlideUp(view: View) {
+        view.translationY = 60f
+        view.alpha = 0f
+        view.animate()
+            .translationY(0f)
+            .alpha(1f)
+            .setDuration(350)
+            .setInterpolator(DecelerateInterpolator())
+            .start()
     }
 
     private fun showOptionsDialog(item: ScanHistory) {

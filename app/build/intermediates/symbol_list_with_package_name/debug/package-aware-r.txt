@@ -28,6 +28,8 @@ anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
 anim fragment_fast_out_extra_slow_in
+anim item_animation_slide_up
+anim layout_animation_cascade
 anim linear_indeterminate_line1_head_interpolator
 anim linear_indeterminate_line1_tail_interpolator
 anim linear_indeterminate_line2_head_interpolator
@@ -3095,6 +3097,7 @@ drawable ic_call_answer_video_low
 drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_camera
+drawable ic_camera_focus_ring
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_folder
@@ -3473,8 +3476,8 @@ id italic
 id item_touch_helper_previous_elevation
 id ivFolderIcon
 id ivFolderPreview
-id ivLoadingScreen
 id ivNoteThumbnail
+id ivScanRing
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3494,6 +3497,7 @@ id llOptionFolder
 id llOptionNote
 id llPdfBottomActions
 id llPdfHeader
+id logoContainer
 id lottie_layer_name
 id m3_side_sheet
 id marquee
@@ -3753,6 +3757,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tvAppName
 id tvDate
 id tvEmptyRecent
 id tvFolderName
@@ -3793,6 +3798,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id vScanBeam
 id vertical_only
 id viewFinder
 id viewFrame
@@ -3804,6 +3810,7 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id vvLogo
 id webViewContent
 id west
 id wide
@@ -4032,6 +4039,7 @@ mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
+raw ns
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

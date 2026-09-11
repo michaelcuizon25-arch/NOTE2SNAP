@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -26,6 +27,7 @@ import com.example.note2snap.adapter.NotesAdapter
 import com.example.note2snap.data.AppDatabase
 import com.example.note2snap.model.Folder
 import com.example.note2snap.model.Note
+import com.example.note2snap.utils.setOnAnimatedClickListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +109,7 @@ class NotesFragment : Fragment() {
         rvFolders?.layoutManager = LinearLayoutManager(context)
         rvFolders?.adapter = folderAdapter
 
-        fabAdd?.setOnClickListener { showBottomSheetMenu() }
+        fabAdd?.setOnAnimatedClickListener { showBottomSheetMenu() }
 
         setupFilterListeners()
 
@@ -120,11 +122,27 @@ class NotesFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        btnSort?.setOnClickListener { showSortBottomSheet() }
+        btnSort?.setOnAnimatedClickListener { showSortBottomSheet() }
 
         observeDatabaseData()
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        animateScreenSlideUp(view)
+    }
+
+    private fun animateScreenSlideUp(view: View) {
+        view.translationY = 60f
+        view.alpha = 0f
+        view.animate()
+            .translationY(0f)
+            .alpha(1f)
+            .setDuration(350)
+            .setInterpolator(DecelerateInterpolator())
+            .start()
     }
 
     private fun handleFolderClick(folder: Folder) {
@@ -136,6 +154,7 @@ class NotesFragment : Fragment() {
             notesList.clear()
             notesList.addAll(notesInFolder)
             notesAdapter.notifyDataSetChanged()
+            rvNotes.scheduleLayoutAnimation()
         }
     }
 
@@ -151,19 +170,19 @@ class NotesFragment : Fragment() {
     }
 
     private fun setupFilterListeners() {
-        chipAll?.setOnClickListener {
+        chipAll?.setOnAnimatedClickListener {
             currentFilter = FilterType.ALL
             updateFilterTabUI()
             applySearchAndSort()
         }
 
-        chipNotes?.setOnClickListener {
+        chipNotes?.setOnAnimatedClickListener {
             currentFilter = FilterType.NOTES
             updateFilterTabUI()
             applySearchAndSort()
         }
 
-        chipFolders?.setOnClickListener {
+        chipFolders?.setOnAnimatedClickListener {
             currentFilter = FilterType.FOLDERS
             updateFilterTabUI()
             applySearchAndSort()
@@ -254,6 +273,10 @@ class NotesFragment : Fragment() {
         rvNotes.visibility = if (showNotesSection) View.VISIBLE else View.GONE
         tvNotesLabel?.visibility = if (showNotesSection) View.VISIBLE else View.GONE
 
+        // Trigger cascade animations on list update
+        if (showFoldersSection) rvFolders?.scheduleLayoutAnimation()
+        if (showNotesSection) rvNotes.scheduleLayoutAnimation()
+
         val visibleItemCount = (if (showFoldersSection) folderList.size else 0) + (if (showNotesSection) notesList.size else 0)
 
         if (visibleItemCount == 0) {
@@ -275,25 +298,25 @@ class NotesFragment : Fragment() {
         val dialog = BottomSheetDialog(requireContext())
         val dialogView = layoutInflater.inflate(R.layout.dialog_sort_by, null, false)
 
-        dialogView.findViewById<TextView>(R.id.tvSortName)?.setOnClickListener {
+        dialogView.findViewById<TextView>(R.id.tvSortName)?.setOnAnimatedClickListener {
             currentSort = SortType.NAME
             applySearchAndSort()
             dialog.dismiss()
         }
 
-        dialogView.findViewById<TextView>(R.id.tvSortTime)?.setOnClickListener {
+        dialogView.findViewById<TextView>(R.id.tvSortTime)?.setOnAnimatedClickListener {
             currentSort = SortType.TIME
             applySearchAndSort()
             dialog.dismiss()
         }
 
-        dialogView.findViewById<TextView>(R.id.tvSortSize)?.setOnClickListener {
+        dialogView.findViewById<TextView>(R.id.tvSortSize)?.setOnAnimatedClickListener {
             currentSort = SortType.SIZE
             applySearchAndSort()
             dialog.dismiss()
         }
 
-        dialogView.findViewById<TextView>(R.id.tvSortType)?.setOnClickListener {
+        dialogView.findViewById<TextView>(R.id.tvSortType)?.setOnAnimatedClickListener {
             currentSort = SortType.TYPE
             applySearchAndSort()
             dialog.dismiss()
@@ -361,12 +384,12 @@ class NotesFragment : Fragment() {
         val dialog = BottomSheetDialog(requireContext())
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_options, null, false)
 
-        dialogView.findViewById<LinearLayout>(R.id.llOptionFolder)?.setOnClickListener {
+        dialogView.findViewById<LinearLayout>(R.id.llOptionFolder)?.setOnAnimatedClickListener {
             dialog.dismiss()
             startActivity(Intent(context, CreateFolderActivity::class.java))
         }
 
-        dialogView.findViewById<LinearLayout>(R.id.llOptionNote)?.setOnClickListener {
+        dialogView.findViewById<LinearLayout>(R.id.llOptionNote)?.setOnAnimatedClickListener {
             dialog.dismiss()
             (activity as? MainActivity)?.loadFragment(ScanFragment())
         }

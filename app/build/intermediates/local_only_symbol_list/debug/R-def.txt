@@ -1,5 +1,7 @@
 R_DEF: Internal format may change without notice
 local
+anim item_animation_slide_up
+anim layout_animation_cascade
 color accent
 color background
 color card_bg
@@ -28,6 +30,7 @@ drawable bg_filter_active
 drawable bg_filter_inactive
 drawable bg_search_bar
 drawable ic_camera
+drawable ic_camera_focus_ring
 drawable ic_folder
 drawable ic_history
 drawable ic_home
@@ -77,14 +80,15 @@ id fabAddNotes
 id fragmentContainer
 id ivFolderIcon
 id ivFolderPreview
-id ivLoadingScreen
 id ivNoteThumbnail
+id ivScanRing
 id layoutTitle
 id llEmptyHistory
 id llOptionFolder
 id llOptionNote
 id llPdfBottomActions
 id llPdfHeader
+id logoContainer
 id nav_history
 id nav_home
 id nav_notes
@@ -103,6 +107,7 @@ id rvNotes
 id rvRecentNotes
 id scrollViewContent
 id switchDarkMode
+id tvAppName
 id tvDate
 id tvEmptyRecent
 id tvFolderName
@@ -138,8 +143,10 @@ id tvSubTitle
 id tvTitle2
 id tvTitleNote
 id tvTitleSnap
+id vScanBeam
 id viewFinder
 id viewFrame
+id vvLogo
 id webViewContent
 layout activity_create_folder
 layout activity_loading
@@ -163,6 +170,7 @@ menu menu_note_options
 mipmap ic_launcher
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
+raw ns
 string app_name_2
 string app_name_note
 string app_name_snap

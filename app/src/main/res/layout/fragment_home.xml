@@ -22,12 +22,8 @@
                 android:id="@+id/tvTitleNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="#000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4"
                 android:text="NOTE"
-                android:textColor="#FFFFFF"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -36,22 +32,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:textColor="#FFFFFF"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                android:shadowColor="#000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvTitleSnap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:shadowColor="#000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4"
                 android:text="SNAP"
                 android:textColor="#2563EB"
                 android:textSize="26sp"
@@ -238,7 +226,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Compact Secondary Actions Grid -->
+        <!-- Secondary Actions Grid -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -270,7 +258,6 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_camera"
                         app:tint="#2563EB" />
 
                     <TextView
@@ -323,7 +310,7 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <!-- Real Recent Activity Section -->
+        <!-- Recent Activity Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -348,6 +335,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layoutAnimation="@anim/layout_animation_cascade"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

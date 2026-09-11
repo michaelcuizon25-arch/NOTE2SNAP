@@ -52,6 +52,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import  com.example.note2snap.utils.setOnAnimatedClickListener
 
 class ScanFragment : Fragment() {
 
@@ -104,14 +105,13 @@ class ScanFragment : Fragment() {
 
         checkAndStartCamera()
 
-        btnCapture.setOnClickListener {
+        btnCapture.setOnAnimatedClickListener {
             takePhoto()
         }
 
-        btnGallery.setOnClickListener {
+        btnGallery.setOnAnimatedClickListener {
             selectImageFromGallery.launch("image/*")
         }
-
         btnFlash.setOnClickListener {
             if (camera?.cameraInfo?.hasFlashUnit() == true) {
                 isTorchOn = !isTorchOn

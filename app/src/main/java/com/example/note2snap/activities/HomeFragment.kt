@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.note2snap.R
 import com.example.note2snap.adapter.NotesAdapter
 import com.example.note2snap.data.AppDatabase
 import com.example.note2snap.model.Note
+import com.example.note2snap.utils.setOnAnimatedClickListener
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -57,15 +59,15 @@ class HomeFragment : Fragment() {
         updateHeaderAndDate()
 
         // Tab switches synchronized with BottomNavigationView selection
-        cardScan?.setOnClickListener {
+        cardScan?.setOnAnimatedClickListener {
             (activity as? MainActivity)?.selectTab(R.id.nav_scan)
         }
 
-        cardNotes?.setOnClickListener {
+        cardNotes?.setOnAnimatedClickListener {
             (activity as? MainActivity)?.selectTab(R.id.nav_notes)
         }
 
-        cardFolders?.setOnClickListener {
+        cardFolders?.setOnAnimatedClickListener {
             (activity as? MainActivity)?.selectTab(R.id.nav_notes)
         }
 
@@ -82,6 +84,42 @@ class HomeFragment : Fragment() {
         observeDatabaseData()
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        startHomeEntranceAnimation(view)
+    }
+
+    private fun startHomeEntranceAnimation(rootView: View) {
+        val headerTitle = rootView.findViewById<TextView>(R.id.tvTitleNote)?.parent as? View
+        val cardScan = rootView.findViewById<CardView>(R.id.cardScan)
+        val cardNotes = rootView.findViewById<CardView>(R.id.cardNotes)
+        val secondaryActionsGrid = cardNotes?.parent as? View
+
+        // Collect views in visual cascading order
+        val elementsToAnimate = listOfNotNull(
+            headerTitle,
+            tvGreeting,
+            tvGreetingSubtitle,
+            tvDate,
+            cardScan,
+            secondaryActionsGrid,
+            rvRecentNotes
+        )
+
+        elementsToAnimate.forEachIndexed { index, animView ->
+            animView.translationY = 60f
+            animView.alpha = 0f
+
+            animView.animate()
+                .translationY(0f)
+                .alpha(1f)
+                .setDuration(400)
+                .setStartDelay((index * 60).toLong())
+                .setInterpolator(DecelerateInterpolator())
+                .start()
+        }
     }
 
     private fun updateHeaderAndDate() {
