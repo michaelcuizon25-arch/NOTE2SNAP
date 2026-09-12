@@ -64,9 +64,15 @@
     <string name="common_open_on_phone">Auf Smartphone öffnen</string>
     <string name="common_signin_button_text">Anmelden</string>
     <string name="common_signin_button_text_long">Über Google anmelden</string>
+    <string name="crop_image_menu_crop">zuschneiden</string>
     <string name="error_a11y_label">Fehler: ungültig</string>
     <string name="error_icon_content_description">Fehler</string>
     <string name="exposed_dropdown_menu_content_description">Drop-down-Menü anzeigen</string>
+    <string name="ic_flip_24">spiegeln</string>
+    <string name="ic_flip_24_horizontally">horizontal spiegeln</string>
+    <string name="ic_flip_24_vertically">vertikal spiegeln</string>
+    <string name="ic_rotate_left_24">gegen den Uhrzeigersinn drehen</string>
+    <string name="ic_rotate_right_24">drehen</string>
     <string name="icon_content_description">Dialogfeldsymbol</string>
     <string name="item_view_role_description">Tab</string>
     <string name="material_clock_toggle_content_description">Vormittags oder Nachmittags auswählen</string>
@@ -128,6 +134,9 @@
     <string name="mtrl_timepicker_cancel">Abbrechen</string>
     <string name="mtrl_timepicker_confirm">OK</string>
     <string name="password_toggle_content_description">Passwort anzeigen</string>
+    <string name="pick_image_camera">Kamera</string>
+    <string name="pick_image_chooser_title">Quelle wählen</string>
+    <string name="pick_image_gallery">Galerie</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Suche"</string>
     <string name="searchview_clear_text_content_description">Text löschen</string>
     <string name="searchview_navigation_content_description">Zurück</string>

@@ -654,6 +654,7 @@
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
+    <color name="bottom_nav_border">#E5E7EB</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -2058,6 +2059,7 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="crop_image_menu_crop">Crop</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
@@ -2068,6 +2070,11 @@
     <string name="greeting_ready">Ready to scan your notes today?</string>
     <string name="greeting_welcome">Welcome back</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
+    <string name="ic_flip_24">Flip</string>
+    <string name="ic_flip_24_horizontally">Flip horizontally</string>
+    <string name="ic_flip_24_vertically">Flip vertically</string>
+    <string name="ic_rotate_left_24">Rotate counter clockwise</string>
+    <string name="ic_rotate_right_24">Rotate</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="item_view_role_description">Tab</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
@@ -2181,6 +2188,9 @@
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="pick_image_camera" ns1:ignore="MissingTranslation">Camera</string>
+    <string name="pick_image_chooser_title">Select source</string>
+    <string name="pick_image_gallery" ns1:ignore="MissingTranslation">Gallery</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
@@ -11365,6 +11375,65 @@
             <flag name="all" value="0x77"/>
         </attr>
     </declare-styleable>
+    <declare-styleable name="CropImageView">
+    <attr name="cropGuidelines">
+      <enum name="off" value="0"/>
+      <enum name="onTouch" value="1"/>
+      <enum name="on" value="2"/>
+    </attr>
+    <attr name="cropScaleType">
+      <enum name="fitCenter" value="0"/>
+      <enum name="center" value="1"/>
+      <enum name="centerCrop" value="2"/>
+      <enum name="centerInside" value="3"/>
+    </attr>
+    <attr name="cropShape">
+      <enum name="rectangle" value="0"/>
+      <enum name="oval" value="1"/>
+      <enum name="rectangleVerticalOnly" value="2"/>
+      <enum name="rectangleHorizontalOnly" value="3"/>
+    </attr>
+    <attr name="cornerShape">
+      <enum name="rectangle" value="0"/>
+      <enum name="oval" value="1"/>
+    </attr>
+    <attr format="boolean" name="cropAutoZoomEnabled"/>
+    <attr format="integer" name="cropMaxZoom"/>
+    <attr format="boolean" name="cropMultiTouchEnabled"/>
+    <attr format="boolean" name="cropCenterMoveEnabled"/>
+    <attr format="boolean" name="cropFixAspectRatio"/>
+    <attr format="integer" name="cropAspectRatioX"/>
+    <attr format="integer" name="cropAspectRatioY"/>
+    <attr format="float" name="cropInitialCropWindowPaddingRatio"/>
+    <attr format="dimension" name="cropBorderLineThickness"/>
+    <attr format="color" name="cropBorderLineColor"/>
+    <attr format="dimension" name="cropBorderCornerThickness"/>
+    <attr format="dimension" name="cropBorderCornerOffset"/>
+    <attr format="dimension" name="cropBorderCornerLength"/>
+    <attr format="color" name="cropBorderCornerColor"/>
+    <attr format="dimension" name="cropGuidelinesThickness"/>
+    <attr format="color" name="cropGuidelinesColor"/>
+    <attr format="color" name="cropBackgroundColor"/>
+    <attr format="dimension" name="cropSnapRadius"/>
+    <attr format="dimension" name="cropTouchRadius"/>
+    <attr format="boolean" name="cropSaveBitmapToInstanceState"/>
+    <attr format="boolean" name="cropShowCropOverlay"/>
+    <attr format="boolean" name="cropShowProgressBar"/>
+    <attr format="dimension" name="cropMinCropWindowWidth"/>
+    <attr format="dimension" name="cropMinCropWindowHeight"/>
+    <attr format="float" name="cropMinCropResultWidthPX"/>
+    <attr format="float" name="cropMinCropResultHeightPX"/>
+    <attr format="float" name="cropMaxCropResultWidthPX"/>
+    <attr format="float" name="cropMaxCropResultHeightPX"/>
+    <attr format="boolean" name="cropFlipHorizontally"/>
+    <attr format="boolean" name="cropFlipVertically"/>
+    <attr format="color" name="cropCornerCircleFillColor"/>
+    <attr format="dimension" name="cropCornerRadius"/>
+    <attr format="float" name="cropperLabelTextSize"/>
+    <attr format="color" name="cropperLabelTextColor"/>
+    <attr format="string" name="cropperLabelText"/>
+    <attr format="boolean" name="cropShowLabel"/>
+  </declare-styleable>
     <declare-styleable name="CustomAttribute">
         <attr format="string" name="attributeName"/>
         <attr format="string" name="methodName"/>

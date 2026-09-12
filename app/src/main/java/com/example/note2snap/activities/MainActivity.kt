@@ -12,21 +12,19 @@ import com.example.note2snap.utils.LiquidBottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNav: LiquidBottomNavigationView
+    private var currentTabIndex: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Read saved preference and set Night Mode BEFORE layout inflation
-        val sharedPref = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
-        val isSystemDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-        val isDarkModeSaved = sharedPref.getBoolean("DARK_MODE", isSystemDark)
+        // Only trigger initial theme check on cold start to prevent recreation loops
+        if (savedInstanceState == null) {
+            val sharedPref = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
+            val isSystemDark = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+            val isDarkModeSaved = sharedPref.getBoolean("DARK_MODE", isSystemDark)
+            val targetMode = if (isDarkModeSaved) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
 
-        val targetMode = if (isDarkModeSaved) {
-            AppCompatDelegate.MODE_NIGHT_YES
-        } else {
-            AppCompatDelegate.MODE_NIGHT_NO
-        }
-
-        if (AppCompatDelegate.getDefaultNightMode() != targetMode) {
-            AppCompatDelegate.setDefaultNightMode(targetMode)
+            if (AppCompatDelegate.getDefaultNightMode() != targetMode) {
+                AppCompatDelegate.setDefaultNightMode(targetMode)
+            }
         }
 
         super.onCreate(savedInstanceState)
@@ -34,32 +32,66 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottomNavigation)
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState != null) {
+            currentTabIndex = savedInstanceState.getInt("SAVED_TAB_INDEX", 4)
+        } else {
+            currentTabIndex = 0
             loadFragment(HomeFragment())
-            // Position initial liquid curve under Home (Index 0)
-            bottomNav.post {
-                bottomNav.animateToTab(0, totalTabs = 5)
-            }
         }
 
+        // Set active item quiet state BEFORE attaching listener
+        bottomNav.selectedItemId = getMenuIdForIndex(currentTabIndex)
+        setupNavigationListener()
+
+        // Safely animate bottom navigation curve after view layout completes
+        bottomNav.post {
+            try {
+                bottomNav.animateToTab(currentTabIndex, totalTabs = 5)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun setupNavigationListener() {
         bottomNav.setOnItemSelectedListener { item ->
-            val (fragment, tabIndex) = when (item.itemId) {
-                R.id.nav_home -> Pair(HomeFragment(), 0)
-                R.id.nav_notes -> Pair(NotesFragment(), 1)
-                R.id.nav_scan -> Pair(ScanFragment(), 2)
-                R.id.nav_history -> Pair(HistoryFragment(), 3)
-                R.id.nav_settings -> Pair(SettingsFragment(), 4)
-                else -> Pair(HomeFragment(), 0)
+            val (fragmentSupplier, tabIndex) = when (item.itemId) {
+                R.id.nav_home -> Pair({ HomeFragment() }, 0)
+                R.id.nav_notes -> Pair({ NotesFragment() }, 1)
+                R.id.nav_scan -> Pair({ ScanFragment() }, 2)
+                R.id.nav_history -> Pair({ HistoryFragment() }, 3)
+                R.id.nav_settings -> Pair({ SettingsFragment() }, 4)
+                else -> Pair({ HomeFragment() }, 0)
             }
 
-            // Animate liquid wave to target tab position
-            bottomNav.animateToTab(tabIndex, totalTabs = 5)
-            loadFragment(fragment)
+            if (currentTabIndex != tabIndex) {
+                currentTabIndex = tabIndex
+                bottomNav.animateToTab(tabIndex, totalTabs = 5)
+                loadFragment(fragmentSupplier())
+            }
             true
         }
     }
 
+    private fun getMenuIdForIndex(index: Int): Int {
+        return when (index) {
+            0 -> R.id.nav_home
+            1 -> R.id.nav_notes
+            2 -> R.id.nav_scan
+            3 -> R.id.nav_history
+            4 -> R.id.nav_settings
+            else -> R.id.nav_home
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("SAVED_TAB_INDEX", currentTabIndex)
+    }
+
     fun loadFragment(fragment: Fragment) {
+        if (supportFragmentManager.isStateSaved) return
+
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(
                 android.R.anim.fade_in,
@@ -69,7 +101,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    // Call this from child fragments to update the active tab and trigger liquid wave
     fun selectTab(itemId: Int) {
         bottomNav.selectedItemId = itemId
     }

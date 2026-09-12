@@ -64,9 +64,15 @@
     <string name="common_open_on_phone">스마트폰에서 열기</string>
     <string name="common_signin_button_text">로그인</string>
     <string name="common_signin_button_text_long">Google 계정으로 로그인</string>
+    <string name="crop_image_menu_crop">자르기</string>
     <string name="error_a11y_label">오류: 잘못됨</string>
     <string name="error_icon_content_description">오류</string>
     <string name="exposed_dropdown_menu_content_description">드롭다운 메뉴 표시</string>
+    <string name="ic_flip_24">반전</string>
+    <string name="ic_flip_24_horizontally">좌우반전</string>
+    <string name="ic_flip_24_vertically">상하반전</string>
+    <string name="ic_rotate_left_24">반시계 회전</string>
+    <string name="ic_rotate_right_24">회전</string>
     <string name="icon_content_description">대화상자 아이콘</string>
     <string name="item_view_role_description">탭</string>
     <string name="material_clock_toggle_content_description">오전 또는 오후를 선택하세요.</string>
@@ -128,6 +134,7 @@
     <string name="mtrl_timepicker_cancel">취소</string>
     <string name="mtrl_timepicker_confirm">확인</string>
     <string name="password_toggle_content_description">비밀번호 표시</string>
+    <string name="pick_image_chooser_title">이미지 선택</string>
     <string msgid="6264217191555673260" name="search_menu_title">"검색"</string>
     <string name="searchview_clear_text_content_description">텍스트 삭제</string>
     <string name="searchview_navigation_content_description">뒤로</string>

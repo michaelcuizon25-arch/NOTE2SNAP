@@ -35,11 +35,17 @@ import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
+import com.canhub.cropper.CropImageView
 import com.example.note2snap.R
 import com.example.note2snap.data.AppDatabase
 import com.example.note2snap.model.Note
 import com.example.note2snap.model.ScanHistory
 import com.example.note2snap.utils.WhiteboardRuleEngine
+import com.example.note2snap.utils.setOnAnimatedClickListener
+import com.google.android.gms.tasks.Tasks
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
@@ -52,7 +58,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import  com.example.note2snap.utils.setOnAnimatedClickListener
+import kotlin.time.Duration.Companion.milliseconds
 
 class ScanFragment : Fragment() {
 
@@ -64,19 +70,47 @@ class ScanFragment : Fragment() {
     private var loadingDialog: AlertDialog? = null
     private var scanStartTime: Long = 0L
 
-    private val selectImageFromGallery = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
-        uri?.let { selectedUri ->
-            scanStartTime = System.currentTimeMillis()
-            showLoadingDialog("Processing photo...")
-            val savedPath = saveImageToInternalStorage(selectedUri)
-            if (savedPath != null) {
-                val localFileUri = Uri.fromFile(File(savedPath))
-                processImageWithOcr(localFileUri, savedPath, "Gallery Note")
+    // Multi-image crop queue variables
+    private val rawImageUris = mutableListOf<Uri>()
+    private val croppedImageUris = mutableListOf<Uri>()
+    private var currentCropIndex = 0
+
+    // 1. Multi-photo gallery picker using the classic app chooser
+    private val selectMultipleImagesFromGallery = registerForActivityResult(
+        ActivityResultContracts.GetMultipleContents()
+    ) { uris: List<Uri> ->
+        if (uris.isNotEmpty()) {
+            rawImageUris.clear()
+            croppedImageUris.clear()
+            rawImageUris.addAll(uris)
+            currentCropIndex = 0
+            startCropNextImage()
+        }
+    }
+
+    // 2. Sequential cropper activity result launcher
+    private val cropImageLauncher = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful) {
+            result.uriContent?.let { croppedUri ->
+                val savedPath = saveImageToInternalStorage(croppedUri)
+                if (savedPath != null) {
+                    croppedImageUris.add(Uri.fromFile(File(savedPath)))
+                } else {
+                    croppedImageUris.add(croppedUri)
+                }
+            }
+        } else {
+            Toast.makeText(requireContext(), "Cropping skipped for image ${currentCropIndex + 1}", Toast.LENGTH_SHORT).show()
+        }
+
+        currentCropIndex++
+        if (currentCropIndex < rawImageUris.size) {
+            startCropNextImage()
+        } else {
+            if (croppedImageUris.isNotEmpty()) {
+                processMultipleImagesWithOcr(croppedImageUris, "Gallery Note")
             } else {
                 hideLoadingDialog()
-                Toast.makeText(requireContext(), "Failed to save selected image.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -110,8 +144,9 @@ class ScanFragment : Fragment() {
         }
 
         btnGallery.setOnAnimatedClickListener {
-            selectImageFromGallery.launch("image/*")
+            selectMultipleImagesFromGallery.launch("image/*")
         }
+
         btnFlash.setOnClickListener {
             if (camera?.cameraInfo?.hasFlashUnit() == true) {
                 isTorchOn = !isTorchOn
@@ -127,6 +162,24 @@ class ScanFragment : Fragment() {
         return view
     }
 
+    private fun startCropNextImage() {
+        if (currentCropIndex < rawImageUris.size) {
+            val uriToCrop = rawImageUris[currentCropIndex]
+            val cropOptions = CropImageContractOptions(
+                uri = uriToCrop,
+                cropImageOptions = CropImageOptions().apply {
+                    guidelines = CropImageView.Guidelines.ON
+                    activityTitle = "Crop Image (${currentCropIndex + 1}/${rawImageUris.size})"
+                    cropMenuCropButtonTitle = if (currentCropIndex == rawImageUris.size - 1) "Done" else "Next"
+                    allowRotation = true
+                    allowFlipping = true
+                }
+            )
+            cropImageLauncher.launch(cropOptions)
+        }
+    }
+
+    @Suppress("unused")
     fun updateInstruction(message: String) {
         tvInstruction.text = message
     }
@@ -168,7 +221,7 @@ class ScanFragment : Fragment() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(requireContext(), "Failed to start camera.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to start camera: ${exc.message}", Toast.LENGTH_SHORT).show()
             }
         }, ContextCompat.getMainExecutor(requireContext()))
     }
@@ -199,13 +252,13 @@ class ScanFragment : Fragment() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
                     hideLoadingDialog()
-                    Toast.makeText(requireContext(), "Photo capture failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Photo capture failed: ${exc.message}", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = output.savedUri
                     if (savedUri != null) {
-                        processImageWithOcr(savedUri, savedUri.toString(), "Scanned Note")
+                        processMultipleImagesWithOcr(listOf(savedUri), "Scanned Note")
                     } else {
                         hideLoadingDialog()
                     }
@@ -243,80 +296,70 @@ class ScanFragment : Fragment() {
         return bmpGrayscale
     }
 
-    private fun processImageWithOcr(imageUri: Uri, imagePath: String, fallbackTitle: String) {
+    private fun processMultipleImagesWithOcr(imageUris: List<Uri>, fallbackTitle: String) {
+        scanStartTime = System.currentTimeMillis()
+        showLoadingDialog("Processing ${imageUris.size} photo(s)...")
+
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val inputStream = requireContext().contentResolver.openInputStream(imageUri)
-                val originalBitmap = BitmapFactory.decodeStream(inputStream)
-                inputStream?.close()
+                val pageContents = mutableListOf<String>()
+                var extractedTitle = ""
+                val primaryImagePath = imageUris.firstOrNull()?.path ?: imageUris.firstOrNull()?.toString() ?: ""
 
-                if (originalBitmap == null) {
-                    withContext(Dispatchers.Main) {
-                        hideLoadingDialog()
-                        Toast.makeText(requireContext(), "Failed to decode image.", Toast.LENGTH_SHORT).show()
-                    }
-                    return@launch
-                }
-
-                val processedBitmap = preprocessBitmap(originalBitmap)
-                val inputImage = InputImage.fromBitmap(processedBitmap, 0)
                 val recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
-                withContext(Dispatchers.Main) {
-                    recognizer.process(inputImage)
-                        .addOnSuccessListener { visionText ->
-                            // Pass ML Kit Text object directly to preserve bounding box spatial coordinates
-                            val structuredNote = WhiteboardRuleEngine.process(visionText)
-                            val formattedContent = structuredNote.blocks.joinToString("<br/>") { it.formattedText }
+                for ((index, uri) in imageUris.withIndex()) {
+                    val inputStream = requireContext().contentResolver.openInputStream(uri)
+                    val originalBitmap = BitmapFactory.decodeStream(inputStream)
+                    inputStream?.close()
 
-                            val extractedTitle = if (structuredNote.title.isNotBlank() && structuredNote.title != "Untitled Scan") {
-                                structuredNote.title
+                    if (originalBitmap != null) {
+                        val processedBitmap = preprocessBitmap(originalBitmap)
+                        val inputImage = InputImage.fromBitmap(processedBitmap, 0)
+
+                        val visionText = Tasks.await(recognizer.process(inputImage))
+                        val structuredNote = WhiteboardRuleEngine.process(visionText)
+
+                        if (extractedTitle.isBlank() && structuredNote.title.isNotBlank() && structuredNote.title != "Untitled Scan") {
+                            extractedTitle = structuredNote.title
+                        }
+
+                        val pageText = structuredNote.blocks.joinToString("<br/>") { it.formattedText }
+                        if (pageText.isNotBlank()) {
+                            if (imageUris.size > 1) {
+                                pageContents.add("<b>--- Page ${index + 1} ---</b><br/>$pageText")
                             } else {
-                                fallbackTitle
-                            }
-
-                            val finalTitle = if (extractedTitle.isNotBlank()) extractedTitle else fallbackTitle
-
-                            lifecycleScope.launch(Dispatchers.IO) {
-                                saveNoteToDatabase(finalTitle, formattedContent, imagePath)
-                                saveScanHistory(finalTitle, imagePath)
-
-                                val elapsedTime = System.currentTimeMillis() - scanStartTime
-                                val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
-                                delay(remainingDelay)
-
-                                withContext(Dispatchers.Main) {
-                                    hideLoadingDialog()
-
-                                    val intent = Intent(requireContext(), PdfViewerActivity::class.java).apply {
-                                        putExtra("TITLE", finalTitle)
-                                        putExtra("CONTENT", formattedContent)
-                                        putExtra("IMAGE_PATH", imagePath)
-                                    }
-                                    startActivity(intent)
-                                }
+                                pageContents.add(pageText)
                             }
                         }
-                        .addOnFailureListener {
-                            lifecycleScope.launch(Dispatchers.IO) {
-                                saveNoteToDatabase(fallbackTitle, "", imagePath)
-                                saveScanHistory(fallbackTitle, imagePath)
+                    }
+                }
 
-                                val elapsedTime = System.currentTimeMillis() - scanStartTime
-                                val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
-                                delay(remainingDelay)
+                val finalTitle = extractedTitle.ifBlank { fallbackTitle }
+                val formattedContent = pageContents.joinToString("<br/><br/>")
 
-                                withContext(Dispatchers.Main) {
-                                    hideLoadingDialog()
-                                    Toast.makeText(requireContext(), "OCR processing failed.", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-                        }
+                saveNoteToDatabase(finalTitle, formattedContent, primaryImagePath)
+                saveScanHistory(finalTitle, primaryImagePath)
+
+                val elapsedTime = System.currentTimeMillis() - scanStartTime
+                val remainingDelay = (5000L - elapsedTime).coerceAtLeast(0L)
+                delay(remainingDelay.milliseconds)
+
+                withContext(Dispatchers.Main) {
+                    hideLoadingDialog()
+
+                    val intent = Intent(requireContext(), PdfViewerActivity::class.java).apply {
+                        putExtra("TITLE", finalTitle)
+                        putExtra("CONTENT", formattedContent)
+                        putExtra("IMAGE_PATH", primaryImagePath)
+                    }
+                    startActivity(intent)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
                     hideLoadingDialog()
+                    Toast.makeText(requireContext(), "Processing failed.", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -67,4 +67,7 @@ dependencies {
     // Coroutines & Lifecycle KTX
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    // Crop photo (Corrected JitPack Artifact)
+    implementation("com.github.CanHub:Android-Image-Cropper:4.5.0")
 }

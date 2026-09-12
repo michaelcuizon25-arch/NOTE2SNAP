@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.note2snap.app-mergeDebugResources-44:/values-az/values-az.xml",
+            "outputFile": "com.example.note2snap.app-mergeDebugResources-48:/values-az/values-az.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\7b5efb989bb75c1a6a3fa7e0d4f95570\\transformed\\jetified-play-services-base-18.5.0\\res\\values-az\\values.xml",

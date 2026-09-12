@@ -68,9 +68,15 @@
     <string name="common_open_on_phone">فتح على الهاتف</string>
     <string name="common_signin_button_text">تسجل الدخول</string>
     <string name="common_signin_button_text_long">‏تسجيل الدخول عبر Google</string>
+    <string name="crop_image_menu_crop">قُصّ</string>
     <string name="error_a11y_label">خطأ: غير صالح</string>
     <string name="error_icon_content_description">خطأ</string>
     <string name="exposed_dropdown_menu_content_description">عرض القائمة المنسدلة</string>
+    <string name="ic_flip_24">اقلب</string>
+    <string name="ic_flip_24_horizontally">اقلب أفقيًا</string>
+    <string name="ic_flip_24_vertically">اقلب رأسيًا</string>
+    <string name="ic_rotate_left_24">أدر عكس اتجاه عقارب الساعة</string>
+    <string name="ic_rotate_right_24">أدر</string>
     <string name="icon_content_description">رمز مربع الحوار</string>
     <string name="item_view_role_description">علامة تبويب</string>
     <string name="material_clock_toggle_content_description">يُرجى اختيار صباحًا أو مساءً.</string>
@@ -132,6 +138,9 @@
     <string name="mtrl_timepicker_cancel">إلغاء</string>
     <string name="mtrl_timepicker_confirm">حسنًا</string>
     <string name="password_toggle_content_description">عرض كلمة المرور</string>
+    <string name="pick_image_camera">الة تصوير</string>
+    <string name="pick_image_chooser_title">اختر مصدرًا</string>
+    <string name="pick_image_gallery">صالة عرض</string>
     <string msgid="6264217191555673260" name="search_menu_title">"البحث"</string>
     <string name="searchview_clear_text_content_description">محو النص</string>
     <string name="searchview_navigation_content_description">رجوع</string>

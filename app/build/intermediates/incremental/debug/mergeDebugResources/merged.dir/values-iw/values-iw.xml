@@ -65,9 +65,15 @@
     <string name="common_open_on_phone">פתח בטלפון</string>
     <string name="common_signin_button_text">כניסה</string>
     <string name="common_signin_button_text_long">‏היכנס באמצעות Google</string>
+    <string name="crop_image_menu_crop">חתוך</string>
     <string name="error_a11y_label">שגיאה: לא תקין</string>
     <string name="error_icon_content_description">שגיאה</string>
     <string name="exposed_dropdown_menu_content_description">הצגת התפריט הנפתח</string>
+    <string name="ic_flip_24">הפוך</string>
+    <string name="ic_flip_24_horizontally">הפוך אופקית</string>
+    <string name="ic_flip_24_vertically">הפוך אנכית</string>
+    <string name="ic_rotate_left_24">סובב נגד כיוון השעון</string>
+    <string name="ic_rotate_right_24">סובב</string>
     <string name="icon_content_description">סמל לתיבת דו-שיח</string>
     <string name="item_view_role_description">מקש Tab</string>
     <string name="material_clock_toggle_content_description">יש לבחור ב-AM או ב-PM</string>
@@ -129,6 +135,7 @@
     <string name="mtrl_timepicker_cancel">ביטול</string>
     <string name="mtrl_timepicker_confirm">אישור</string>
     <string name="password_toggle_content_description">הצגת סיסמה</string>
+    <string name="pick_image_chooser_title">בחר מקור</string>
     <string msgid="6264217191555673260" name="search_menu_title">"חיפוש"</string>
     <string name="searchview_clear_text_content_description">מחיקת הטקסט</string>
     <string name="searchview_navigation_content_description">חזרה</string>

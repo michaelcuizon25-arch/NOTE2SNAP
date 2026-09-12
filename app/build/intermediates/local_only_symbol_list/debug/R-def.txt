@@ -4,6 +4,7 @@ anim item_animation_slide_up
 anim layout_animation_cascade
 color accent
 color background
+color bottom_nav_border
 color card_bg
 color color_blue
 color color_gray
@@ -28,6 +29,8 @@ drawable bg_chip_selected
 drawable bg_chip_unselected
 drawable bg_filter_active
 drawable bg_filter_inactive
+drawable bg_glass_pill_selected
+drawable bg_glass_toggle_track
 drawable bg_search_bar
 drawable ic_camera
 drawable ic_camera_focus_ring
@@ -48,10 +51,12 @@ id btnActionShare
 id btnBackCreateFolder
 id btnCapture
 id btnCreateFolder
+id btnDarkTheme
 id btnFavorite
 id btnFlash
 id btnFolderMore
 id btnGallery
+id btnLightTheme
 id btnNoteMore
 id btnPdfBack
 id btnPdfMoreOptions
@@ -100,14 +105,14 @@ id rbCS102
 id rbDataStructure
 id rbProgrammingNotes
 id rgFolders
-id rlDarkMode
 id rvFolders
 id rvHistory
 id rvNotes
 id rvRecentNotes
 id scrollViewContent
-id switchDarkMode
+id themeContainer
 id tvAppName
+id tvDarkLabel
 id tvDate
 id tvEmptyRecent
 id tvFolderName
@@ -115,6 +120,7 @@ id tvFoldersLabel
 id tvGreeting
 id tvGreetingSubtitle
 id tvInstruction
+id tvLightLabel
 id tvLoadingMessage
 id tvNotFound
 id tvNoteDate
@@ -146,6 +152,7 @@ id tvTitleSnap
 id vScanBeam
 id viewFinder
 id viewFrame
+id viewPillSelector
 id vvLogo
 id webViewContent
 layout activity_create_folder
@@ -165,6 +172,7 @@ layout fragment_settings
 layout item_folder
 layout item_history
 layout item_note
+layout view_theme_toggle
 menu bottom_nav_menu
 menu menu_note_options
 mipmap ic_launcher

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.note2snap.app-mergeDebugResources-44:/values-zu/values-zu.xml",
+            "outputFile": "com.example.note2snap.app-mergeDebugResources-48:/values-zu/values-zu.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-3\\7c713b5138c11d107db4ead24f69401d\\transformed\\core-1.13.1\\res\\values-zu\\values-zu.xml",

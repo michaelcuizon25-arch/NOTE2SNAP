@@ -2,6 +2,7 @@
 <resources>
     <color name="accent">#5A7FDB</color>
     <color name="background">#FFFFFF</color>
+    <color name="bottom_nav_border">#E5E7EB</color>
     <color name="card_bg">#FFFFFF</color>
     <color name="color_blue">#AFC4F6</color>
     <color name="color_gray">#E3E3E3</color>

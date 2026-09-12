@@ -22,4 +22,5 @@
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#B0B0B0</color>
     <color name="search_bg">#2C2C2C</color>
+    <color name="bottom_nav_border">#1F2937</color>
 </resources>

@@ -19,15 +19,18 @@ class LiquidBottomNavigationView @JvmOverloads constructor(
 ) : BottomNavigationView(context, attrs, defStyleAttr) {
 
     private val path = Path()
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
+    }
+    private val borderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        strokeWidth = 3f // Adds outline visibility on light backgrounds
     }
 
     private var currentCenterX = 0f
     private var targetCenterX = 0f
     private var animator: ValueAnimator? = null
 
-    // Curve dimensions
     private val curveHeight = 32f
     private val curveRadius = 90f
 
@@ -61,20 +64,19 @@ class LiquidBottomNavigationView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         path.reset()
 
-        // Dynamically fetch background color for active theme
-        paint.color = ContextCompat.getColor(context, R.color.card_bg)
+        fillPaint.color = ContextCompat.getColor(context, R.color.card_bg)
+        // Subtle top border color for light mode contrast
+        borderPaint.color = ContextCompat.getColor(context, R.color.bottom_nav_border)
 
         val width = width.toFloat()
         val height = height.toFloat()
 
-        // Control points for the liquid bezier curve
         val startX = currentCenterX - curveRadius
         val endX = currentCenterX + curveRadius
 
         path.moveTo(0f, curveHeight)
         path.lineTo(startX, curveHeight)
 
-        // Smooth liquid curve around active tab
         path.cubicTo(
             startX + (curveRadius / 2), curveHeight,
             currentCenterX - (curveRadius / 2), 0f,
@@ -91,7 +93,10 @@ class LiquidBottomNavigationView @JvmOverloads constructor(
         path.lineTo(0f, height)
         path.close()
 
-        canvas.drawPath(path, paint)
+        // Draw background fill and top border outline
+        canvas.drawPath(path, fillPaint)
+        canvas.drawPath(path, borderPaint)
+
         super.onDraw(canvas)
     }
 }

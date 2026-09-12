@@ -64,9 +64,15 @@
     <string name="common_open_on_phone">فون پر کھولیں</string>
     <string name="common_signin_button_text">سائن ان کریں</string>
     <string name="common_signin_button_text_long">‏Google کے ساتھ سائن ان کریں</string>
+    <string name="crop_image_menu_crop">فصل</string>
     <string name="error_a11y_label">خرابی: غلط</string>
     <string name="error_icon_content_description">خرابی</string>
     <string name="exposed_dropdown_menu_content_description">ڈراپ ڈاؤن مینیو دکھائیں</string>
+    <string name="ic_flip_24">پلٹائیں</string>
+    <string name="ic_flip_24_horizontally">افقی پلٹائیں</string>
+    <string name="ic_flip_24_vertically">عمودی طور پر پلٹائیں</string>
+    <string name="ic_rotate_left_24">گھڑی وار گھڑی گھومیں</string>
+    <string name="ic_rotate_right_24">گھمائیں</string>
     <string name="icon_content_description">ڈائیلاگ کا آئیکن</string>
     <string name="item_view_role_description">ٹیب</string>
     <string name="material_clock_toggle_content_description">AM یا PM منتخب کریں</string>
@@ -128,6 +134,7 @@
     <string name="mtrl_timepicker_cancel">منسوخ کریں</string>
     <string name="mtrl_timepicker_confirm">ٹھیک ہے</string>
     <string name="password_toggle_content_description">پاس ورڈ دکھائیں</string>
+    <string name="pick_image_chooser_title">ذریعہ منتخب کریں</string>
     <string msgid="6264217191555673260" name="search_menu_title">"تلاش کریں"</string>
     <string name="searchview_clear_text_content_description">ٹیکسٹ صاف کریں</string>
     <string name="searchview_navigation_content_description">واپس جائیں</string>

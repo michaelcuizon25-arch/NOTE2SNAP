@@ -1,20 +1,21 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:39:9-47:20
+INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:44:9-52:20
 	android:grantUriPermissions
-		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:43:13-47
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:48:13-47
 	android:authorities
 		INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:41:13-60
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:46:13-60
 	android:exported
-		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:42:13-37
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:40:13-62
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:45:13-62
 manifest
-ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-50:12
-INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-50:12
+ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-55:12
+INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:2:1-55:12
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:2:1-38:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Admin\.gradle\caches\transforms-3\912b75a23c37ec4c0e89c514f6c51b71\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Admin\.gradle\caches\transforms-3\e9984899b9fb6302c28646234542d1ff\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.camera:camera-video:1.3.4] C:\Users\Admin\.gradle\caches\transforms-3\c9898aea6373b46fe720315eed6b4d9b\transformed\jetified-camera-video-1.3.4\AndroidManifest.xml:2:1-7:12
@@ -41,6 +42,7 @@ MERGED from [com.google.mlkit:vision-interfaces:16.3.0] C:\Users\Admin\.gradle\c
 MERGED from [com.google.android.gms:play-services-tasks:18.2.0] C:\Users\Admin\.gradle\caches\transforms-3\161a6be94f45b96a1d3df1378548b863\transformed\jetified-play-services-tasks-18.2.0\AndroidManifest.xml:2:1-5:12
 MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Admin\.gradle\caches\transforms-3\64f05de351031d99a5a0faf0243d43d3\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Admin\.gradle\caches\transforms-3\ff8c86a1495ca0ae51e3735534e8e0a3\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-ktx:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\d463d4472ba7c111592135e19e58f8e0\transformed\jetified-activity-ktx-1.8.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\7cdbed91a07d7c4bd29231be44573066\transformed\jetified-activity-1.8.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Admin\.gradle\caches\transforms-3\f66700310101c43f880a6e37bb9a7f36\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Admin\.gradle\caches\transforms-3\8669269fbe33645add42092ecdb0d930\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -54,11 +56,13 @@ MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Admin\.gradle\caches\t
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Admin\.gradle\caches\transforms-3\679eb92161aeac93ac65fa71d8a181b0\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\Admin\.gradle\caches\transforms-3\779140594bc773d5822b623163b52e4a\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core:1.13.1] C:\Users\Admin\.gradle\caches\transforms-3\7c713b5138c11d107db4ead24f69401d\transformed\core-1.13.1\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\Admin\.gradle\caches\transforms-3\2a5460763890c1476d6ce5c19bd9d24f\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Admin\.gradle\caches\transforms-3\e9ec4c95c7140d1a8e7b31426850537d\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\9593a6c53a60f66ac1e082d87c239707\transformed\lifecycle-viewmodel-2.8.4\AndroidManifest.xml:2:1-5:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\1b8d1ad848be487d6f74c5a53c96037b\transformed\jetified-lifecycle-viewmodel-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\3eeb9e563c201fa87c19d91474974fbe\transformed\jetified-lifecycle-livedata-core-ktx-2.8.4\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\9a6d105f7f153b365ece03b245a5c9b8\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\cf1c6b8f873ac9975f230af4f186f9d2\transformed\jetified-lifecycle-viewmodel-ktx-2.8.4\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\7516d78090244a02fedf5d9068f9e15a\transformed\jetified-lifecycle-process-2.8.4\AndroidManifest.xml:17:1-35:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\007cb73c3bd8fec415e824d26a4a8faf\transformed\lifecycle-livedata-core-2.8.4\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\c4c30ea55c7cbf2979c65f7ee5e83fe8\transformed\lifecycle-livedata-2.8.4\AndroidManifest.xml:17:1-22:12
@@ -75,6 +79,7 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Admin\.gradle\
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\Admin\.gradle\caches\transforms-3\1f708a409515be671a0d9073016c533f\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Admin\.gradle\caches\transforms-3\64ad243f8afd18ec95593009a520ef51\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Admin\.gradle\caches\transforms-3\76512c51fb377f6be68b97a8762ffe65\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\Admin\.gradle\caches\transforms-3\c148255d6b31141e324eacbf2f8b4ebe\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Admin\.gradle\caches\transforms-3\b7d06812182895cf1f3793fadc3232cc\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Admin\.gradle\caches\transforms-3\7fc9f10804d72e062fbaf5c0696ea0ed\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Admin\.gradle\caches\transforms-3\4c69494a68ed8031e41dc58f20b7a5e4\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
@@ -117,8 +122,10 @@ ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\a
 	android:name
 		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:13:22-73
 application
-ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:15:5-49:19
-INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:15:5-49:19
+ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:15:5-54:19
+INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:15:5-54:19
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:22:5-36:19
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:22:5-36:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Admin\.gradle\caches\transforms-3\912b75a23c37ec4c0e89c514f6c51b71\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Admin\.gradle\caches\transforms-3\912b75a23c37ec4c0e89c514f6c51b71\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Admin\.gradle\caches\transforms-3\e9984899b9fb6302c28646234542d1ff\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -225,16 +232,28 @@ ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\a
 		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:37:64-88
 	android:name
 		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:37:19-63
-meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:44:13-46:54
-	android:resource
-		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:46:17-51
+activity#com.canhub.cropper.CropImageActivity
+ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:40:9-42:59
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:33:9-35:39
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:33:9-35:39
+	android:exported
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:35:13-36
+	android:theme
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:42:13-56
 	android:name
-		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:45:17-67
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:41:13-64
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:49:13-51:54
+	android:resource
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:51:17-51
+	android:name
+		ADDED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml:50:17-67
 uses-sdk
 INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Admin\.gradle\caches\transforms-3\912b75a23c37ec4c0e89c514f6c51b71\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Admin\.gradle\caches\transforms-3\912b75a23c37ec4c0e89c514f6c51b71\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Admin\.gradle\caches\transforms-3\e9984899b9fb6302c28646234542d1ff\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
@@ -287,6 +306,8 @@ MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Admi
 MERGED from [com.google.android.gms:play-services-basement:18.4.0] C:\Users\Admin\.gradle\caches\transforms-3\64f05de351031d99a5a0faf0243d43d3\transformed\jetified-play-services-basement-18.4.0\AndroidManifest.xml:3:5-44
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Admin\.gradle\caches\transforms-3\ff8c86a1495ca0ae51e3735534e8e0a3\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Admin\.gradle\caches\transforms-3\ff8c86a1495ca0ae51e3735534e8e0a3\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\d463d4472ba7c111592135e19e58f8e0\transformed\jetified-activity-ktx-1.8.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\d463d4472ba7c111592135e19e58f8e0\transformed\jetified-activity-ktx-1.8.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\7cdbed91a07d7c4bd29231be44573066\transformed\jetified-activity-1.8.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\Admin\.gradle\caches\transforms-3\7cdbed91a07d7c4bd29231be44573066\transformed\jetified-activity-1.8.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Admin\.gradle\caches\transforms-3\f66700310101c43f880a6e37bb9a7f36\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
@@ -313,6 +334,8 @@ MERGED from [androidx.customview:customview:1.1.0] C:\Users\Admin\.gradle\caches
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\Admin\.gradle\caches\transforms-3\779140594bc773d5822b623163b52e4a\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.13.1] C:\Users\Admin\.gradle\caches\transforms-3\7c713b5138c11d107db4ead24f69401d\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.13.1] C:\Users\Admin\.gradle\caches\transforms-3\7c713b5138c11d107db4ead24f69401d\transformed\core-1.13.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\Admin\.gradle\caches\transforms-3\2a5460763890c1476d6ce5c19bd9d24f\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\Admin\.gradle\caches\transforms-3\2a5460763890c1476d6ce5c19bd9d24f\transformed\jetified-savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Admin\.gradle\caches\transforms-3\e9ec4c95c7140d1a8e7b31426850537d\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\Admin\.gradle\caches\transforms-3\e9ec4c95c7140d1a8e7b31426850537d\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\9593a6c53a60f66ac1e082d87c239707\transformed\lifecycle-viewmodel-2.8.4\AndroidManifest.xml:4:5-43
@@ -323,6 +346,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] C:\Users\Admi
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\3eeb9e563c201fa87c19d91474974fbe\transformed\jetified-lifecycle-livedata-core-ktx-2.8.4\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\9a6d105f7f153b365ece03b245a5c9b8\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\9a6d105f7f153b365ece03b245a5c9b8\transformed\jetified-lifecycle-runtime-release\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\cf1c6b8f873ac9975f230af4f186f9d2\transformed\jetified-lifecycle-viewmodel-ktx-2.8.4\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\cf1c6b8f873ac9975f230af4f186f9d2\transformed\jetified-lifecycle-viewmodel-ktx-2.8.4\AndroidManifest.xml:5:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\7516d78090244a02fedf5d9068f9e15a\transformed\jetified-lifecycle-process-2.8.4\AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-process:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\7516d78090244a02fedf5d9068f9e15a\transformed\jetified-lifecycle-process-2.8.4\AndroidManifest.xml:21:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.4] C:\Users\Admin\.gradle\caches\transforms-3\007cb73c3bd8fec415e824d26a4a8faf\transformed\lifecycle-livedata-core-2.8.4\AndroidManifest.xml:20:5-44
@@ -355,6 +380,8 @@ MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Admin\.gradle\caches\tra
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Admin\.gradle\caches\transforms-3\64ad243f8afd18ec95593009a520ef51\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Admin\.gradle\caches\transforms-3\76512c51fb377f6be68b97a8762ffe65\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Admin\.gradle\caches\transforms-3\76512c51fb377f6be68b97a8762ffe65\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\Admin\.gradle\caches\transforms-3\c148255d6b31141e324eacbf2f8b4ebe\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\Admin\.gradle\caches\transforms-3\c148255d6b31141e324eacbf2f8b4ebe\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Admin\.gradle\caches\transforms-3\b7d06812182895cf1f3793fadc3232cc\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Admin\.gradle\caches\transforms-3\b7d06812182895cf1f3793fadc3232cc\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Admin\.gradle\caches\transforms-3\7fc9f10804d72e062fbaf5c0696ea0ed\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
@@ -385,6 +412,38 @@ MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\Admin\.gradle\c
 		INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\Admin\Downloads\NOTE2SNAP-20260819T031413Z-1-001\NOTE2SNAP\app\src\main\AndroidManifest.xml
+queries
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:9:5-20:15
+intent#action:name:android.intent.action.GET_CONTENT+category:name:android.intent.category.OPENABLE+data:mimeType:*/*
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:10:9-16:18
+action#android.intent.action.GET_CONTENT
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:11:13-72
+	android:name
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:11:21-69
+category#android.intent.category.OPENABLE
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:13:13-73
+	android:name
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:13:23-70
+data
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:15:13-44
+	android:mimeType
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:15:19-41
+intent#action:name:android.media.action.IMAGE_CAPTURE
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:17:9-19:18
+action#android.media.action.IMAGE_CAPTURE
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:18:13-73
+	android:name
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:18:21-70
+provider#com.canhub.cropper.CropFileProvider
+ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:23:9-31:20
+	android:grantUriPermissions
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:27:13-47
+	android:authorities
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:25:13-72
+	android:exported
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [com.github.CanHub:Android-Image-Cropper:4.5.0] C:\Users\Admin\.gradle\caches\transforms-3\05cc5254b5a474601a0a406d575373d2\transformed\jetified-Android-Image-Cropper-4.5.0\AndroidManifest.xml:24:13-63
 service#androidx.camera.core.impl.MetadataHolderService
 ADDED from [androidx.camera:camera-camera2:1.3.4] C:\Users\Admin\.gradle\caches\transforms-3\b8a52ff28a90d100067a4b80f7406b33\transformed\jetified-camera-camera2-1.3.4\AndroidManifest.xml:24:9-33:19
 MERGED from [androidx.camera:camera-core:1.3.4] C:\Users\Admin\.gradle\caches\transforms-3\141e7b384f48208f63d3aed989ccd4cd\transformed\jetified-camera-core-1.3.4\AndroidManifest.xml:29:9-33:78

@@ -64,9 +64,15 @@
     <string name="common_open_on_phone">Apri sul telefono</string>
     <string name="common_signin_button_text">Accedi</string>
     <string name="common_signin_button_text_long">Accedi con Google</string>
+    <string name="crop_image_menu_crop">Ritaglia</string>
     <string name="error_a11y_label">Errore: non valido</string>
     <string name="error_icon_content_description">Errore</string>
     <string name="exposed_dropdown_menu_content_description">Mostra il menu a discesa</string>
+    <string name="ic_flip_24">Capovolgi</string>
+    <string name="ic_flip_24_horizontally">Capovolgi orizzontalmente</string>
+    <string name="ic_flip_24_vertically">Capovolgi verticalmente</string>
+    <string name="ic_rotate_left_24">Ruota in senso antiorario</string>
+    <string name="ic_rotate_right_24">Ruota</string>
     <string name="icon_content_description">Icona della finestra di dialogo</string>
     <string name="item_view_role_description">Scheda</string>
     <string name="material_clock_toggle_content_description">Seleziona AM o PM</string>
@@ -128,6 +134,9 @@
     <string name="mtrl_timepicker_cancel">Annulla</string>
     <string name="mtrl_timepicker_confirm">OK</string>
     <string name="password_toggle_content_description">Mostra password</string>
+    <string name="pick_image_camera">Fotocamera</string>
+    <string name="pick_image_chooser_title">Seleziona origine</string>
+    <string name="pick_image_gallery">Galleria</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Cerca"</string>
     <string name="searchview_clear_text_content_description">Cancella testo</string>
     <string name="searchview_navigation_content_description">Indietro</string>

@@ -64,9 +64,15 @@
     <string name="common_open_on_phone">Telefonda aç</string>
     <string name="common_signin_button_text">Oturum aç</string>
     <string name="common_signin_button_text_long">Google\'da oturum aç</string>
+    <string name="crop_image_menu_crop">Kırp</string>
     <string name="error_a11y_label">Hata: geçersiz</string>
     <string name="error_icon_content_description">Hata</string>
     <string name="exposed_dropdown_menu_content_description">Açılır menüyü göster</string>
+    <string name="ic_flip_24">çevir</string>
+    <string name="ic_flip_24_horizontally">Yatay olarak çevir</string>
+    <string name="ic_flip_24_vertically">Dikey olarak çevir</string>
+    <string name="ic_rotate_left_24">Saat yönünde döndür</string>
+    <string name="ic_rotate_right_24">döndürmek</string>
     <string name="icon_content_description">İletişim kutusu simgesi</string>
     <string name="item_view_role_description">Sekme</string>
     <string name="material_clock_toggle_content_description">ÖÖ veya ÖS\'yi seçin</string>
@@ -128,6 +134,7 @@
     <string name="mtrl_timepicker_cancel">İptal</string>
     <string name="mtrl_timepicker_confirm">Tamam</string>
     <string name="password_toggle_content_description">Şifreyi göster</string>
+    <string name="pick_image_chooser_title">Kaynağı seçin</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Ara"</string>
     <string name="searchview_clear_text_content_description">Metni temizle</string>
     <string name="searchview_navigation_content_description">Geri</string>
