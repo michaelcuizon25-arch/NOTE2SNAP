@@ -1,238 +1,250 @@
 [
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/xml_file_paths.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/xml/file_paths.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_item_note.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\item_note.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/anim_item_animation_slide_up.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/anim/item_animation_slide_up.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_editor_box.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_editor_box.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_scan.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_scan.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_glass_pill_selected.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_glass_pill_selected.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_dialog_add_options.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/dialog_add_options.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_item_folder.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\item_folder.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-hdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_chip_selected.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_chip_selected.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/menu_menu_note_options.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/menu/menu_note_options.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\raw_ns.mp4.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\raw\\ns.mp4"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_home.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_home.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_glass_toggle_track.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_glass_toggle_track.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\anim_layout_animation_cascade.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\anim\\layout_animation_cascade.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_activity_create_folder.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\activity_create_folder.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_camera_focus_ring.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_camera_focus_ring.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_fragment_history.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\fragment_history.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_activity_main.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/activity_main.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_dialog_loading.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\dialog_loading.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/raw_ns.mp4.flat",
-        "source": "com.example.note2snap.app-main-52:/raw/ns.mp4"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_glass_toggle_track.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_glass_toggle_track.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_activity_create_folder.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/activity_create_folder.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_item_note.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/item_note.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\anim_item_animation_slide_up.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\anim\\item_animation_slide_up.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_activity_save_folder.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\activity_save_folder.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-mdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_search_bar.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_search_bar.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/anim_layout_animation_cascade.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/anim/layout_animation_cascade.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_home.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_home.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_activity_loading.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\activity_loading.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_filter_active.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_filter_active.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_folder.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_folder.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_item_folder.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/item_folder.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_camera.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_camera.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_notes.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_notes.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_filter_inactive.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_filter_inactive.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_camera_frame.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_camera_frame.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_chip_unselected.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_chip_unselected.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_dialog_loading.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/dialog_loading.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_camera.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_camera.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_view_theme_toggle.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\view_theme_toggle.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_glass_pill_selected.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_glass_pill_selected.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_history.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_history.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_chip_selected.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_chip_selected.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_item_history.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\item_history.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_view_theme_toggle.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/view_theme_toggle.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_camera_focus_ring.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_camera_focus_ring.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_fragment_scan.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/fragment_scan.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_filter_active.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_filter_active.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_search_bar.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_search_bar.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_filter_inactive.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_filter_inactive.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_notes.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_notes.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-hdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_fragment_scan.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\fragment_scan.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_dialog_sort_by.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/dialog_sort_by.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_setting.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_setting.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_item_history.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/item_history.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_camera_frame.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_camera_frame.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_activity_loading.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/activity_loading.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\menu_menu_note_options.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\menu\\menu_note_options.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xhdpi/ic_launcher_round.webp"
-    },
-    {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_folder.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_folder.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
     },
     {
         "merged": "com.example.note2snap.app-merged_res-50:/layout_activity_pdf_viewer.xml.flat",
         "source": "com.example.note2snap.app-main-52:/layout/activity_pdf_viewer.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_card_border.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_card_border.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_setting.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_setting.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_chip_unselected.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_chip_unselected.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_activity_save_folder.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/activity_save_folder.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xhdpi/ic_launcher_foreground.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_activity_pdf_viewer.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\activity_pdf_viewer.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_splash_screen_bg.png.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/splash_screen_bg.png"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_fragment_notes.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\fragment_notes.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_ic_history.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/ic_history.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-xxxhdpi\\ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/menu_bottom_nav_menu.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/menu/bottom_nav_menu.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/drawable_bg_card_border.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/drawable/bg_card_border.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_ic_scan.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\ic_scan.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_fragment_notes.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/fragment_notes.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\xml\\file_paths.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_fragment_history.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/fragment_history.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_activity_splash.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_fragment_home.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_bg_ocr_badge.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\bg_ocr_badge.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\menu\\bottom_nav_menu.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/layout_fragment_settings.xml.flat",
-        "source": "com.example.note2snap.app-main-52:/layout/fragment_settings.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_dialog_sort_by.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\dialog_sort_by.xml"
     },
     {
-        "merged": "com.example.note2snap.app-merged_res-50:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.note2snap.app-main-52:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-mdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_fragment_settings.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\drawable_splash_screen_bg.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\drawable\\splash_screen_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-merged_res-50:\\layout_dialog_add_options.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\8.5\\com.example.note2snap.app-main-52:\\layout\\dialog_add_options.xml"
     }
 ]

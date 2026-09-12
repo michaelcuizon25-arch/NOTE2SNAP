@@ -20,6 +20,7 @@
         app:itemActiveIndicatorStyle="@null"
         app:itemIconTint="@color/text_primary"
         app:itemTextColor="@color/text_primary"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/bottom_nav_menu"
+        app:elevation="0dp"/>
 
 </RelativeLayout>

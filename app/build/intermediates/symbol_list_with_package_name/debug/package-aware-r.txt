@@ -3093,10 +3093,12 @@ drawable bg_camera_frame
 drawable bg_card_border
 drawable bg_chip_selected
 drawable bg_chip_unselected
+drawable bg_editor_box
 drawable bg_filter_active
 drawable bg_filter_inactive
 drawable bg_glass_pill_selected
 drawable bg_glass_toggle_track
+drawable bg_ocr_badge
 drawable bg_search_bar
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3342,6 +3344,7 @@ id beginning
 id bestChoice
 id blocking
 id bottom
+id bottomBar
 id bottomNavigation
 id bounce
 id bounceBoth
@@ -3357,6 +3360,10 @@ id btnDarkTheme
 id btnFavorite
 id btnFlash
 id btnFolderMore
+id btnFormatBold
+id btnFormatBullet
+id btnFormatHeading
+id btnFormatItalic
 id btnGallery
 id btnLightTheme
 id btnNoteMore
@@ -3370,6 +3377,7 @@ id cache_measures
 id callMeasure
 id cancel_button
 id cardFolders
+id cardImagePreview
 id cardNotes
 id cardScan
 id cardViewFinder
@@ -3470,6 +3478,7 @@ id enterAlways
 id enterAlwaysCollapsed
 id escape
 id etFolderName
+id etInlineEditor
 id etSearchNotes
 id exitUntilCollapsed
 id expand_activities_button
@@ -3493,6 +3502,7 @@ id fixed
 id flip
 id floating
 id forever
+id formattingBar
 id fragmentContainer
 id fragment_container_view_tag
 id frost
@@ -3525,6 +3535,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imgScannedThumbnail
 id immediateStop
 id included
 id indeterminate
@@ -3554,8 +3565,6 @@ id list_item
 id llEmptyHistory
 id llOptionFolder
 id llOptionNote
-id llPdfBottomActions
-id llPdfHeader
 id logoContainer
 id lottie_layer_name
 id m3_side_sheet
@@ -3807,6 +3816,7 @@ id titleDividerNoCustom
 id title_template
 id toggle
 id top
+id topBar
 id topPanel
 id touch_outside
 id transitionToEnd

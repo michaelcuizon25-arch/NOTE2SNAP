@@ -2,44 +2,53 @@ package com.example.note2snap.activities
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.text.InputType
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import com.example.note2snap.R
 import com.example.note2snap.data.AppDatabase
 import com.example.note2snap.model.Note
 import com.example.note2snap.utils.DocxExporter
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class PdfViewerActivity : AppCompatActivity() {
 
     private var currentNote: Note? = null
     private var currentTitle: String = "Untitled Note"
     private var currentRawContent: String = ""
+    private var currentImagePath: String = ""
+    private var isEditMode: Boolean = false
 
     private val createPdfLauncher = registerForActivityResult(
         ActivityResultContracts.CreateDocument("application/pdf")
@@ -53,10 +62,12 @@ class PdfViewerActivity : AppCompatActivity() {
 
         currentTitle = intent.getStringExtra("TITLE") ?: "Untitled Note"
         val directContent = intent.getStringExtra("CONTENT")
+        currentImagePath = intent.getStringExtra("IMAGE_PATH") ?: ""
 
-        findViewById<TextView>(R.id.tvPdfTitle).apply {
-            text = currentTitle
-        }
+        findViewById<TextView>(R.id.tvPdfTitle)?.text = currentTitle
+
+        // 1. Display Scanned Image Preview
+        setupImagePreview(currentImagePath)
 
         if (!directContent.isNullOrEmpty()) {
             currentRawContent = directContent
@@ -72,8 +83,20 @@ class PdfViewerActivity : AppCompatActivity() {
             showOptionsMenu(view)
         }
 
-        findViewById<LinearLayout>(R.id.btnActionSaveNotes)?.setOnClickListener {
-            showEditContentDialog()
+        // 4. Setup Inline Formatting Toolbar Buttons
+        findViewById<Button>(R.id.btnFormatBold)?.setOnClickListener { wrapSelectedText("<b>", "</b>") }
+        findViewById<Button>(R.id.btnFormatItalic)?.setOnClickListener { wrapSelectedText("<i>", "</i>") }
+        findViewById<Button>(R.id.btnFormatBullet)?.setOnClickListener { insertAtCursor("\n• ") }
+        findViewById<Button>(R.id.btnFormatHeading)?.setOnClickListener { insertAtCursor("\n# ") }
+
+        // 2 & 6. Primary Action: Direct Inline Save to Notes with Visual Feedback
+        findViewById<MaterialButton>(R.id.btnActionSaveNotes)?.setOnClickListener {
+            if (isEditMode) {
+                val etInlineEditor = findViewById<EditText>(R.id.etInlineEditor)
+                currentRawContent = etInlineEditor.text.toString().replace("\n", "<br/>")
+                toggleInlineEditMode(false)
+            }
+            saveNoteToDatabase()
         }
 
         findViewById<LinearLayout>(R.id.btnActionDownload)?.setOnClickListener {
@@ -83,6 +106,24 @@ class PdfViewerActivity : AppCompatActivity() {
 
         findViewById<LinearLayout>(R.id.btnActionShare)?.setOnClickListener {
             shareDocument()
+        }
+    }
+
+    private fun setupImagePreview(path: String) {
+        val cardImagePreview = findViewById<View>(R.id.cardImagePreview)
+        val imgScannedThumbnail = findViewById<ImageView>(R.id.imgScannedThumbnail)
+
+        if (path.isNotBlank()) {
+            val imgFile = File(path)
+            if (imgFile.exists()) {
+                val bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+                imgScannedThumbnail?.setImageBitmap(bitmap)
+                cardImagePreview?.visibility = View.VISIBLE
+            } else {
+                cardImagePreview?.visibility = View.GONE
+            }
+        } else {
+            cardImagePreview?.visibility = View.GONE
         }
     }
 
@@ -97,7 +138,11 @@ class PdfViewerActivity : AppCompatActivity() {
             note?.let {
                 currentNote = it
                 currentRawContent = it.content
+                if (currentImagePath.isBlank() && it.imagePath.isNotBlank()) {
+                    currentImagePath = it.imagePath
+                }
                 withContext(Dispatchers.Main) {
+                    setupImagePreview(currentImagePath)
                     renderContent(it.content)
                 }
             }
@@ -146,7 +191,6 @@ class PdfViewerActivity : AppCompatActivity() {
         } else {
             webViewContent?.visibility = View.GONE
             scrollViewContent?.visibility = View.VISIBLE
-            tvPdfContent?.visibility = View.VISIBLE
 
             val htmlFormatted = rawContent
                 .replace(Regex("\\*\\*(.*?)\\*\\*"), "<b>$1</b>")
@@ -163,12 +207,50 @@ class PdfViewerActivity : AppCompatActivity() {
         }
     }
 
+    // 5. Direct Inline Editing Switching
+    private fun toggleInlineEditMode(enable: Boolean) {
+        isEditMode = enable
+        val tvPdfContent = findViewById<TextView>(R.id.tvPdfContent)
+        val etInlineEditor = findViewById<EditText>(R.id.etInlineEditor)
+
+        if (enable) {
+            tvPdfContent?.visibility = View.GONE
+            etInlineEditor?.visibility = View.VISIBLE
+            etInlineEditor?.setText(cleanHtmlAndMarkdown(currentRawContent))
+        } else {
+            etInlineEditor?.visibility = View.GONE
+            tvPdfContent?.visibility = View.VISIBLE
+            renderContent(currentRawContent)
+        }
+    }
+
+    private fun wrapSelectedText(startTag: String, endTag: String) {
+        if (!isEditMode) toggleInlineEditMode(true)
+        val etInlineEditor = findViewById<EditText>(R.id.etInlineEditor) ?: return
+        val start = etInlineEditor.selectionStart.coerceAtLeast(0)
+        val end = etInlineEditor.selectionEnd.coerceAtLeast(0)
+
+        if (end > start) {
+            val editable = etInlineEditor.text
+            editable.insert(start, startTag)
+            editable.insert(end + startTag.length, endTag)
+        }
+    }
+
+    private fun insertAtCursor(textToInsert: String) {
+        if (!isEditMode) toggleInlineEditMode(true)
+        val etInlineEditor = findViewById<EditText>(R.id.etInlineEditor) ?: return
+        val start = etInlineEditor.selectionStart.coerceAtLeast(0)
+        etInlineEditor.text.insert(start, textToInsert)
+    }
+
     private fun shareDocument() {
         DocxExporter.shareAsDocx(
             context = this,
             title = currentTitle,
             content = cleanHtmlAndMarkdown(currentRawContent)
         )
+        showConfirmationFeedback("Share menu opened!")
     }
 
     private fun cleanHtmlAndMarkdown(text: String): String {
@@ -185,14 +267,14 @@ class PdfViewerActivity : AppCompatActivity() {
     private fun showOptionsMenu(anchorView: View) {
         val popup = PopupMenu(this, anchorView)
 
-        popup.menu.add(0, 1, 0, "Edit Content")
+        popup.menu.add(0, 1, 0, if (isEditMode) "Done Editing" else "Edit Inline")
         popup.menu.add(0, 2, 1, "Rename Note")
         popup.menu.add(0, 3, 2, "Delete Note")
 
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 1 -> {
-                    showEditContentDialog()
+                    toggleInlineEditMode(!isEditMode)
                     true
                 }
                 2 -> {
@@ -216,58 +298,24 @@ class PdfViewerActivity : AppCompatActivity() {
             setPadding(40, 32, 40, 32)
         }
 
-        val dialog = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setTitle("Rename Note")
             .setView(input)
             .setPositiveButton("Save") { d, _ ->
                 val newTitle = input.text.toString().trim()
                 if (newTitle.isNotEmpty()) {
                     currentTitle = newTitle
-                    findViewById<TextView>(R.id.tvPdfTitle).text = newTitle
+                    findViewById<TextView>(R.id.tvPdfTitle)?.text = newTitle
                     saveNoteToDatabase()
                 }
                 d.dismiss()
             }
             .setNegativeButton("Cancel", null)
-            .create()
-
-        dialog.show()
-    }
-
-    private fun showEditContentDialog() {
-        // Strip complex HTML tags for user-friendly editing in plain text
-        val editableContent = cleanHtmlAndMarkdown(currentRawContent)
-
-        val input = EditText(this).apply {
-            setText(editableContent)
-            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
-            setPadding(40, 32, 40, 32)
-            minLines = 8
-            gravity = android.view.Gravity.TOP or android.view.Gravity.START
-        }
-
-        val scrollContainer = ScrollView(this).apply {
-            addView(input)
-        }
-
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("Edit Note Content")
-            .setView(scrollContainer)
-            .setPositiveButton("Save") { d, _ ->
-                val newText = input.text.toString()
-                currentRawContent = newText.replace("\n", "<br/>")
-                renderContent(currentRawContent)
-                saveNoteToDatabase()
-                d.dismiss()
-            }
-            .setNegativeButton("Cancel", null)
-            .create()
-
-        dialog.show()
+            .show()
     }
 
     private fun showDeleteConfirmationDialog() {
-        val dialog = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setTitle("Delete Note")
             .setMessage("Are you sure you want to delete this note?")
             .setPositiveButton("Delete") { d, _ ->
@@ -283,9 +331,7 @@ class PdfViewerActivity : AppCompatActivity() {
                 d.dismiss()
             }
             .setNegativeButton("Cancel", null)
-            .create()
-
-        dialog.show()
+            .show()
     }
 
     private fun saveNoteToDatabase() {
@@ -293,23 +339,31 @@ class PdfViewerActivity : AppCompatActivity() {
             val db = AppDatabase.getDatabase(this@PdfViewerActivity).appDao()
             val existingNote = currentNote
 
+            val dateStr = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(Date())
+
             if (existingNote != null) {
-                val updatedNote = existingNote.copy(title = currentTitle, content = currentRawContent)
+                val updatedNote = existingNote.copy(
+                    title = currentTitle,
+                    content = currentRawContent,
+                    imagePath = currentImagePath,
+                    dateEdited = dateStr
+                )
                 db.updateNote(updatedNote)
                 currentNote = updatedNote
             } else {
                 val newNote = Note(
                     title = currentTitle,
                     content = currentRawContent,
-                    imagePath = intent.getStringExtra("IMAGE_PATH") ?: "",
-                    dateEdited = "Updated"
+                    imagePath = currentImagePath,
+                    dateEdited = dateStr
                 )
                 db.insertNote(newNote)
                 currentNote = newNote
             }
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(this@PdfViewerActivity, "Note saved!", Toast.LENGTH_SHORT).show()
+                // 6. Visual Confirmation State Feedback
+                showConfirmationFeedback("✓ Saved to Notes successfully!")
             }
         }
     }
@@ -382,7 +436,7 @@ class PdfViewerActivity : AppCompatActivity() {
                 pdfDocument.close()
 
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@PdfViewerActivity, "PDF saved successfully!", Toast.LENGTH_SHORT).show()
+                    showConfirmationFeedback("✓ PDF saved successfully!")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -402,5 +456,14 @@ class PdfViewerActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             StaticLayout(text, paint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false)
         }
+    }
+
+    // 6. Floating Green Confirmation Snackbar
+    private fun showConfirmationFeedback(message: String) {
+        val bottomBar = findViewById<View>(R.id.bottomBar) ?: return
+        Snackbar.make(bottomBar, message, Snackbar.LENGTH_SHORT)
+            .setBackgroundTint(0xFF166534.toInt())
+            .setTextColor(0xFFFFFFFF.toInt())
+            .show()
     }
 }
